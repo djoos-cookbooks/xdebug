@@ -1,7 +1,11 @@
 # 
-# Author:: David King <dking@xforty.com>
 # Cookbook Name:: xdebug
 # Attributes:: default
+#
+# Author:: David King, xforty technologies <dking@xforty.com>
+# Contributor:: Patrick Connolly <patrick@myplanetdigital.com>
+#
+# Copyright 2012, xforty technologies
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

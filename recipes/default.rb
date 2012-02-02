@@ -1,7 +1,9 @@
 #
-# Author:: David King <dking@xforty.com>
 # Cookbook Name:: xdebug
 # Recipe:: default
+#
+# Author:: David King, xforty technologies <dking@xforty.com>
+# Contributor:: Patrick Connolly, Myplanet Digital <patrick@myplanetdigital.com>
 #
 # Copyright 2012, xforty technologies
 #
