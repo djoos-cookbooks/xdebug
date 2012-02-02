@@ -24,6 +24,8 @@
 # specify a default version for now.  https://pear.php.net/bugs/bug.php?id=19138
 # TODO: implement preferred_state attribute and logic once pear bug is fixed
 
+default[:xdebug][:version] = '2.1.3'
+
 # XDEBUG.INI OPTIONS
 default[:xdebug][:auto_trace]                = 0
 default[:xdebug][:cli_color]                 = 0
