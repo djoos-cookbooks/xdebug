@@ -18,7 +18,6 @@
 # limitations under the License.
 #
 
-include_recipe "apache2"
 include_recipe "php"
 
 # install xdebug apache module
