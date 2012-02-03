@@ -28,16 +28,14 @@ php_pear "xdebug" do
   action :install
 end
 
-# Detect extension_dir from php.ini
-ext_dir = %x[ php -i | grep extension_dir | awk '{print $(NF)}' ].strip
-
 # copy over xdebug.ini to node
 template "#{node['php']['ext_conf_dir']}/xdebug.ini" do
   source "xdebug.ini.erb"
   owner "root"
   group "root"
   mode 0644
-  variables( :extension_dir => ext_dir )
+  # TODO: Move logic from template to recipe later?
+  # variable( :extension_dir => node['php']['php_extension_dir'] )
   notifies :restart, resources("service[apache2]"), :delayed
 end
 
