@@ -1,4 +1,4 @@
-# 
+#
 # Cookbook Name:: xdebug
 # Attributes:: default
 #
@@ -39,6 +39,7 @@ default[:xdebug][:default_enable]            = 1
 #default['xdebug']['dump.*']                 = Empty
 default[:xdebug][:dump_globals]              = 1
 default[:xdebug][:dump_undefined]            = 0
+default[:xdebug][:dump_once]                 = 1
 default[:xdebug][:extended_info]             = 1
 default[:xdebug][:file_link_format]          = ''
 #default[:xdebug][:idekey]                   = *complex*
