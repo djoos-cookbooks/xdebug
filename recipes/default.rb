@@ -39,6 +39,14 @@ template "#{node['php']['ext_conf_dir']}/xdebug.ini" do
   notifies :restart, resources("service[apache2]"), :delayed
 end
 
+file node['xdebug']['remote_log'] do
+  owner "root"
+  group "root"
+  mode "0777"
+  action :create_if_missing
+  not_if { node['xdebug']['remote_log'].empty? }
+end
+
 # TODO: somehow add this line to php.ini (is this necessary?)
 # zend_extension="/usr/local/php/modules/xdebug.so"
 
