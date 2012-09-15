@@ -21,6 +21,7 @@
 #
 
 include_recipe "php"
+include_recipe "build-essential"
 
 # install xdebug apache module
 php_pear "xdebug" do
