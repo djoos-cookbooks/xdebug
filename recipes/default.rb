@@ -32,7 +32,7 @@ php_pear "xdebug" do
   action :install
 end
 
-file node['xdebug']['remote_log'] do
+file node['xdebug']['directives']['remote_log'] do
   owner "root"
   group "root"
   mode "0777"
