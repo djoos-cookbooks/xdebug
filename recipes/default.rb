@@ -21,32 +21,22 @@
 #
 
 include_recipe "php"
+include_recipe "build-essential"
 
 # install xdebug apache module
 php_pear "xdebug" do
-  version node['xdebug']['version']
+  if node['xdebug']['version']
+    version node['xdebug']['version']
+  end
+  zend_extensions ['xdebug.so']
+  directives(node['xdebug']['directives'])
   action :install
 end
 
-# copy over xdebug.ini to node
-template "#{node['php']['ext_conf_dir']}/xdebug.ini" do
-  source "xdebug.ini.erb"
-  owner "root"
-  group "root"
-  mode 0644
-  # TODO: Move logic from template to recipe later?
-  # variable( :extension_dir => node['php']['php_extension_dir'] )
-  notifies :restart, resources("service[apache2]"), :delayed
-end
-
-file node['xdebug']['remote_log'] do
+file node['xdebug']['directives']['remote_log'] do
   owner "root"
   group "root"
   mode "0777"
   action :create_if_missing
-  not_if { node['xdebug']['remote_log'].empty? }
+  not_if { node['xdebug']['directives']['remote_log'].empty? }
 end
-
-# TODO: somehow add this line to php.ini (is this necessary?)
-# zend_extension="/usr/local/php/modules/xdebug.so"
-
