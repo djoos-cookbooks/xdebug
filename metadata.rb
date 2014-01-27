@@ -8,3 +8,7 @@ version          "0.0.1"
 depends          "php"
 suggests         "apache2"
 suggests         "nginx"
+
+recipe "xdebug", "Installs/configures xdebug."
+recipe "xdebug::fpm", "Runs xdebug recipe then restarts PHP5-FPM."
+recipe "xdebug::apache2", "Runs xdebug recipe then restarts Apache2."

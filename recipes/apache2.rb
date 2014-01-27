@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: xdebug
-# Recipe:: default
+# Recipe:: apache2
 #
 # Author:: David King, xforty technologies <dking@xforty.com>
 # Contributor:: Patrick Connolly, Myplanet Digital <patrick@myplanetdigital.com>
@@ -20,29 +20,8 @@
 # limitations under the License.
 #
 
-include_recipe "build-essential"
-include_recipe "php"
+require_recipe "xdebug"
 
-# install xdebug apache module
-php_pear "xdebug" do
-  version node['xdebug']['version']
-  action :install
-end
-
-# copy over xdebug.ini to node
-template "#{node['php']['ext_conf_dir']}/xdebug.ini" do
-  source "xdebug.ini.erb"
-  owner "root"
-  group "root"
-  mode 0644
-  # TODO: Move logic from template to recipe later?
-  # variable( :extension_dir => node['php']['php_extension_dir'] )
-end
-
-file node['xdebug']['remote_log'] do
-  owner "root"
-  group "root"
-  mode "0777"
-  action :create_if_missing
-  not_if { node['xdebug']['remote_log'].empty? }
+service "apache2" do
+  action :restart
 end
