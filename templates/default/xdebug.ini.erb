@@ -2,7 +2,7 @@
 ;
 ; This is a generated file, do not modify by hand
 
-zend_extension = <%= %x[ php -i | grep extension_dir | awk '{print $(NF)}' ].strip %>/xdebug.so
+zend_extension = <%= %x[ php -i | grep extension_dir | awk 'NR==1 {print $(NF)}' ].strip %>/xdebug.so
 
 ; -----------------------------------------------------------------------------
 ; xdebug.auto_trace

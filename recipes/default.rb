@@ -20,6 +20,7 @@
 # limitations under the License.
 #
 
+include_recipe "build-essential"
 include_recipe "php"
 
 # install xdebug apache module
@@ -46,7 +47,3 @@ file node['xdebug']['remote_log'] do
   action :create_if_missing
   not_if { node['xdebug']['remote_log'].empty? }
 end
-
-# TODO: somehow add this line to php.ini (is this necessary?)
-# zend_extension="/usr/local/php/modules/xdebug.so"
-
