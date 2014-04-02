@@ -25,8 +25,10 @@ include_recipe "php"
 
 # install xdebug apache module
 php_pear "xdebug" do
-  version node['xdebug']['version']
-  action :install
+    if node['xdebug']['version'] != "latest"
+        version "#{node['xdebug']['version']}"
+    end
+    action if node['xdebug']['version'] == "latest"? :upgrade : :install
 end
 
 # copy over xdebug.ini to node
