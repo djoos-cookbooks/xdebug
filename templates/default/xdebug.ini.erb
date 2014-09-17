@@ -1,6 +1,5 @@
-; THIS FILE IS MANAGED BY CHEF. ANY CHANGES WILL BE OVERWRITTEN ON CHEF RUN.
-;
-; This is a generated file, do not modify by hand
+; Generated automatically by Chef
+; (see https://github.com/derickr/xdebug/blob/master/xdebug.ini for more information)
 
 zend_extension = <%= %x[ php -i | grep extension_dir | awk 'NR==1 {print $(NF)}' ].strip %>/xdebug.so
 
@@ -13,24 +12,39 @@ zend_extension = <%= %x[ php -i | grep extension_dir | awk 'NR==1 {print $(NF)}'
 ; just before the script is run. This makes it possible to trace code in the
 ; auto_prepend_file [1].
 ; 
-; [1] http://www.php.net/manual/en/ini.core.php#ini.auto-append-file
+; [1] http://www.php.net/manual/en/configuration.directives.php#ini.auto-prepend-file
 ; 
 ;
-xdebug.auto_trace = <%= node['xdebug']['auto_trace'] %>
+;xdebug.auto_trace = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.cli_color
 ;
-; Type: boolean, Default value: 0
+; Only in Xdebug versions > 2.2
+;
+; Type: integer, Default value: 0
 ;
 ; If this setting is 1, Xdebug will color var_dumps and stack traces output when
-; in CLI mode.
+; in CLI mode and when the output is a tty. On Windows, the ANSICON [1] tool
+; needs to be installed.
+; 
+; [1] http://adoxa.110mb.com/ansicon/
+; 
+; If the setting is 2, then Xdebug will always color var_dumps and stack trace,
+; no matter whether it's connected to a tty or whether ANSICON is installed. In
+; this case, you might end up seeing escape codes.
+; 
+; See this article [1] for some more information.
+; 
+; [1] http://drck.me/clicolor-9cr
 ; 
 ;
-xdebug.cli_color = <%= node['xdebug']['cli_color'] %>
+;xdebug.cli_color = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.collect_assignments
+;
+; Only in Xdebug versions > 2.1
 ;
 ; Type: boolean, Default value: 0
 ;
@@ -38,7 +52,7 @@ xdebug.cli_color = <%= node['xdebug']['cli_color'] %>
 ; assignments to function traces.
 ; 
 ;
-xdebug.collect_assignments = <%= node['xdebug']['collect_assignments'] %>
+;xdebug.collect_assignments = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.collect_includes
@@ -50,7 +64,7 @@ xdebug.collect_assignments = <%= node['xdebug']['collect_assignments'] %>
 ; trace files.
 ; 
 ;
-xdebug.collect_includes = <%= node['xdebug']['collect_includes'] %>
+;xdebug.collect_includes = 1
 
 ; -----------------------------------------------------------------------------
 ; xdebug.collect_params
@@ -95,7 +109,7 @@ xdebug.collect_includes = <%= node['xdebug']['collect_includes'] %>
 ; files.
 ; 
 ;
-xdebug.collect_params = <%= node['xdebug']['collect_params'] %>
+;xdebug.collect_params = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.collect_return
@@ -106,7 +120,7 @@ xdebug.collect_params = <%= node['xdebug']['collect_params'] %>
 ; value of function calls to the trace files.
 ; 
 ;
-xdebug.collect_return = <%= node['xdebug']['collect_return'] %>
+;xdebug.collect_return = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.collect_vars
@@ -120,10 +134,12 @@ xdebug.collect_return = <%= node['xdebug']['collect_return'] %>
 ; needs to be enabled only if you wish to use xdebug_get_declared_vars().
 ; 
 ;
-xdebug.collect_vars = <%= node['xdebug']['collect_vars'] %>
+;xdebug.collect_vars = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.coverage_enable
+;
+; Only in Xdebug versions > 2.2
 ;
 ; Type: boolean, Default value: 1
 ;
@@ -132,7 +148,7 @@ xdebug.collect_vars = <%= node['xdebug']['collect_vars'] %>
 ; Coverage Analysis won't work.
 ; 
 ;
-xdebug.coverage_enable = <%= node['xdebug']['coverage_enable'] %>
+;xdebug.coverage_enable = 1
 
 ; -----------------------------------------------------------------------------
 ; xdebug.default_enable
@@ -145,7 +161,7 @@ xdebug.coverage_enable = <%= node['xdebug']['coverage_enable'] %>
 ; advisable to leave this setting set to 1.
 ; 
 ;
-xdebug.default_enable = <%= node['xdebug']['default_enable'] %>
+;xdebug.default_enable = 1
 
 ; -----------------------------------------------------------------------------
 ; xdebug.dump.*
@@ -173,7 +189,7 @@ xdebug.default_enable = <%= node['xdebug']['default_enable'] %>
 ; xdebug.dump.* settings whould be shown or not.
 ; 
 ;
-xdebug.dump_globals = <%= node['xdebug']['dump_globals'] %>
+;xdebug.dump_globals = 1
 
 ; -----------------------------------------------------------------------------
 ; xdebug.dump_once
@@ -184,7 +200,7 @@ xdebug.dump_globals = <%= node['xdebug']['dump_globals'] %>
 ; situations (set to 0) or only on the first (set to 1).
 ; 
 ;
-xdebug.dump_once = <%= node['xdebug']['dump_once'] %>
+;xdebug.dump_once = 1
 
 ; -----------------------------------------------------------------------------
 ; xdebug.dump_undefined
@@ -195,7 +211,7 @@ xdebug.dump_once = <%= node['xdebug']['dump_once'] %>
 ; setting to 1, otherwise leave it set to 0.
 ; 
 ;
-xdebug.dump_undefined = <%= node['xdebug']['dump_undefined'] %>
+;xdebug.dump_undefined = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.extended_info
@@ -210,10 +226,12 @@ xdebug.dump_undefined = <%= node['xdebug']['dump_undefined'] %>
 ; scripts with ini_set(), but only in php.ini.
 ; 
 ;
-xdebug.extended_info = <%= node['xdebug']['extended_info'] %>
+;xdebug.extended_info = 1
 
 ; -----------------------------------------------------------------------------
 ; xdebug.file_link_format
+;
+; Only in Xdebug versions > 2.1
 ;
 ; Type: string, Default value: 
 ;
@@ -235,7 +253,12 @@ xdebug.extended_info = <%= node['xdebug']['extended_info'] %>
 ; %l         the line number
 ; =========  ===============
 ; 
-; To make file/line links work with FireFox (Linux), use the following steps:
+; For various IDEs/OSses there are some instructions listed on how to make this
+; work:
+; 
+; ----------------
+; Firefox on Linux
+; ----------------
 ; 
 ; - Open
 ; 
@@ -243,7 +266,9 @@ xdebug.extended_info = <%= node['xdebug']['extended_info'] %>
 ; 
 ; - Add a new boolean setting "network.protocol-handler.expose.xdebug"
 ; 
-; - Add the following into a shell script "~/bin/ff-xdebug.sh":
+; - Add the following into a shell script
+; 
+;   ``~/bin/ff-xdebug.sh``:
 ; 
 ;     #! /bin/sh
 ;     
@@ -260,12 +285,62 @@ xdebug.extended_info = <%= node['xdebug']['extended_info'] %>
 ; 
 ; chmod +x ~/bin/ff-xdebug.sh
 ; 
-; - Set the xdebug.file_link_format to
+; - Set the xdebug.file_link_format setting to
 ; 
 ; xdebug://%f@%l
 ; 
+; --------------------
+; Windows and netbeans
+; --------------------
+; 
+; - Create the file
+; 
+;   ``netbeans.bat`` and save it in your path ( ``C:\Windows`` will work):
+; 
+;     @echo off 
+;     setlocal enableextensions enabledelayedexpansion 
+;     set NETBEANS=%1
+;     set FILE=%~2
+;     %NETBEANS% --nosplash --console suppress --open "%FILE:~19%"
+;     nircmd win activate process netbeans.exe
+;     
+;   **Note:** Remove the last line if you don't have ``nircmd``.
+; 
+; - Save the following code as
+; 
+;   ``netbeans_protocol.reg``:
+; 
+;     Windows Registry Editor Version 5.00
+;     
+;     [HKEY_CLASSES_ROOT\netbeans]
+;     "URL Protocol"=""
+;     @="URL:Netbeans Protocol"
+;     
+;     [HKEY_CLASSES_ROOT\netbeans\DefaultIcon]
+;     @="\"C:\\Program Files\\NetBeans 7.1.1\\bin\\netbeans.exe,1\""
+;     
+;     [HKEY_CLASSES_ROOT\netbeans\shell]
+;     
+;     [HKEY_CLASSES_ROOT\netbeans\shell\open]
+;     
+;     [HKEY_CLASSES_ROOT\netbeans\shell\open\command]
+;     @="\"C:\\Windows\\netbeans.bat\" \"C:\\Program Files\\NetBeans 7.1.1\\bin\\netbeans.exe\" \"%1\""
+;     
+;   **Note:** Make sure to change the path to Netbeans (twice), as well as the
+;   ``netbeans.bat`` batch file if you saved it somewhere else than
+;   ``C:\Windows\``.
+; 
+; - Double click on the
+; 
+;   ``netbeans_protocol.reg`` file to import it into the registry.
+; 
+; - Set the xdebug.file_link_format setting to
+; 
+; xdebug.file_link_format =
+;     "netbeans://open/?f=%f:%l"
+; 
 ;
-xdebug.file_link_format = <%= node['xdebug']['file_link_format'] %>
+;xdebug.file_link_format = 
 
 ; -----------------------------------------------------------------------------
 ; xdebug.idekey
@@ -276,13 +351,16 @@ xdebug.file_link_format = <%= node['xdebug']['file_link_format'] %>
 ; default is based on environment settings. First the environment setting
 ; DBGP_IDEKEY is consulted, then USER and as last USERNAME. The default is set
 ; to the first environment variable that is found. If none could be found the
-; setting has as default ''.
+; setting has as default ''. If this setting is set, it always overrides the
+; environment variables.
 ; 
 ;
 ;xdebug.idekey = *complex*
 
 ; -----------------------------------------------------------------------------
 ; xdebug.manual_url
+;
+; Only in Xdebug versions < 2.2.1
 ;
 ; Type: string, Default value: http://www.php.net
 ;
@@ -291,7 +369,7 @@ xdebug.file_link_format = <%= node['xdebug']['file_link_format'] %>
 ; this setting to use the closest mirror.
 ; 
 ;
-xdebug.manual_url = <%= node['xdebug']['manual_url'] %>
+;xdebug.manual_url = http://www.php.net
 
 ; -----------------------------------------------------------------------------
 ; xdebug.max_nesting_level
@@ -303,10 +381,12 @@ xdebug.manual_url = <%= node['xdebug']['manual_url'] %>
 ; before the script will be aborted.
 ; 
 ;
-xdebug.max_nesting_level = <%= node['xdebug']['max_nesting_level'] %>
+;xdebug.max_nesting_level = 100
 
 ; -----------------------------------------------------------------------------
 ; xdebug.overload_var_dump
+;
+; Only in Xdebug versions > 2.1
 ;
 ; Type: boolean, Default value: 1
 ;
@@ -316,7 +396,7 @@ xdebug.max_nesting_level = <%= node['xdebug']['max_nesting_level'] %>
 ; not smarter to turn off html_errors.
 ; 
 ;
-xdebug.overload_var_dump = <%= node['xdebug']['overload_var_dump'] %>
+;xdebug.overload_var_dump = 1
 
 ; -----------------------------------------------------------------------------
 ; xdebug.profiler_append
@@ -329,7 +409,7 @@ xdebug.overload_var_dump = <%= node['xdebug']['overload_var_dump'] %>
 ; the new profile.
 ; 
 ;
-xdebug.profiler_append = <%= node['xdebug']['profiler_append'] %>
+;xdebug.profiler_append = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.profiler_enable
@@ -343,7 +423,7 @@ xdebug.profiler_append = <%= node['xdebug']['profiler_append'] %>
 ; **instead** of using this setting.
 ; 
 ;
-xdebug.profiler_enable = <%= node['xdebug']['profiler_enable'] %>
+;xdebug.profiler_enable = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.profiler_enable_trigger
@@ -357,7 +437,7 @@ xdebug.profiler_enable = <%= node['xdebug']['profiler_enable'] %>
 ; request, you need to set xdebug.profiler_enable to 0.
 ; 
 ;
-xdebug.profiler_enable_trigger = <%= node['xdebug']['profiler_enable_trigger'] %>
+;xdebug.profiler_enable_trigger = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.profiler_output_dir
@@ -369,7 +449,7 @@ xdebug.profiler_enable_trigger = <%= node['xdebug']['profiler_enable_trigger'] %
 ; This setting can not be set in your script with ini_set().
 ; 
 ;
-xdebug.profiler_output_dir = <%= node['xdebug']['profiler_output_dir'] %>
+;xdebug.profiler_output_dir = /tmp
 
 ; -----------------------------------------------------------------------------
 ; xdebug.profiler_output_name
@@ -384,7 +464,7 @@ xdebug.profiler_output_dir = <%= node['xdebug']['profiler_output_dir'] %>
 ; See the xdebug.trace_output_name documentation for the supported specifiers.
 ; 
 ;
-xdebug.profiler_output_name = <%= node['xdebug']['profiler_output_name'] %>
+;xdebug.profiler_output_name = cachegrind.out.%p
 
 ; -----------------------------------------------------------------------------
 ; xdebug.remote_autostart
@@ -397,10 +477,12 @@ xdebug.profiler_output_name = <%= node['xdebug']['profiler_output_name'] %>
 ; client, even if the GET/POST/COOKIE variable was not present.
 ; 
 ;
-xdebug.remote_autostart = <%= node['xdebug']['remote_autostart'] %>
+;xdebug.remote_autostart = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.remote_connect_back
+;
+; Only in Xdebug versions > 2.1
 ;
 ; Type: boolean, Default value: 0
 ;
@@ -412,10 +494,12 @@ xdebug.remote_autostart = <%= node['xdebug']['remote_autostart'] %>
 ; address does not match xdebug.remote_host.
 ; 
 ;
-xdebug.remote_connect_back = <%= node['xdebug']['remote_connect_back'] %>
+;xdebug.remote_connect_back = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.remote_cookie_expire_time
+;
+; Only in Xdebug versions > 2.1
 ;
 ; Type: integer, Default value: 3600
 ;
@@ -423,7 +507,7 @@ xdebug.remote_connect_back = <%= node['xdebug']['remote_connect_back'] %>
 ; debugging session stays alive via the session cookie.
 ; 
 ;
-xdebug.remote_cookie_expire_time = <%= node['xdebug']['remote_cookie_expire_time'] %>
+;xdebug.remote_cookie_expire_time = 3600
 
 ; -----------------------------------------------------------------------------
 ; xdebug.remote_enable
@@ -436,7 +520,7 @@ xdebug.remote_cookie_expire_time = <%= node['xdebug']['remote_cookie_expire_time
 ; just continue as if this setting was 0.
 ; 
 ;
-xdebug.remote_enable = <%= node['xdebug']['remote_enable'] %>
+;xdebug.remote_enable = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.remote_handler
@@ -454,7 +538,7 @@ xdebug.remote_enable = <%= node['xdebug']['remote_enable'] %>
 ; **Note**: Xdebug 2.1 and later only support 'dbgp' as protocol.
 ; 
 ;
-xdebug.remote_handler = <%= node['xdebug']['remote_handler'] %>
+;xdebug.remote_handler = dbgp
 
 ; -----------------------------------------------------------------------------
 ; xdebug.remote_host
@@ -466,7 +550,7 @@ xdebug.remote_handler = <%= node['xdebug']['remote_handler'] %>
 ; is enabled.
 ; 
 ;
-xdebug.remote_host = <%= node['xdebug']['remote_host'] %>
+;xdebug.remote_host = localhost
 
 ; -----------------------------------------------------------------------------
 ; xdebug.remote_log
@@ -485,7 +569,7 @@ xdebug.remote_host = <%= node['xdebug']['remote_host'] %>
 ;     -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/db ... ></response>
 ; 
 ;
-xdebug.remote_log = <%= node['xdebug']['remote_log'] %>
+;xdebug.remote_log = 
 
 ; -----------------------------------------------------------------------------
 ; xdebug.remote_mode
@@ -504,7 +588,7 @@ xdebug.remote_log = <%= node['xdebug']['remote_log'] %>
 ;     condition occurs.
 ; 
 ;
-xdebug.remote_mode = <%= node['xdebug']['remote_mode'] %>
+;xdebug.remote_mode = req
 
 ; -----------------------------------------------------------------------------
 ; xdebug.remote_port
@@ -516,10 +600,12 @@ xdebug.remote_mode = <%= node['xdebug']['remote_mode'] %>
 ; this port number, it is best to leave this setting unchanged.
 ; 
 ;
-xdebug.remote_port = <%= node['xdebug']['remote_port'] %>
+;xdebug.remote_port = 9000
 
 ; -----------------------------------------------------------------------------
 ; xdebug.scream
+;
+; Only in Xdebug versions > 2.1
 ;
 ; Type: boolean, Default value: 0
 ;
@@ -527,7 +613,7 @@ xdebug.remote_port = <%= node['xdebug']['remote_port'] %>
 ; that notices, warnings and errors are no longer hidden.
 ; 
 ;
-xdebug.scream = <%= node['xdebug']['scream'] %>
+;xdebug.scream = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.show_exception_trace
@@ -538,7 +624,7 @@ xdebug.scream = <%= node['xdebug']['scream'] %>
 ; exception is raised - even if this exception is actually caught.
 ; 
 ;
-xdebug.show_exception_trace = <%= node['xdebug']['show_exception_trace'] %>
+;xdebug.show_exception_trace = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.show_local_vars
@@ -551,7 +637,7 @@ xdebug.show_exception_trace = <%= node['xdebug']['show_exception_trace'] %>
 ; default.
 ; 
 ;
-xdebug.show_local_vars = <%= node['xdebug']['show_local_vars'] %>
+;xdebug.show_local_vars = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.show_mem_delta
@@ -564,10 +650,12 @@ xdebug.show_local_vars = <%= node['xdebug']['show_local_vars'] %>
 ; will always show this information.
 ; 
 ;
-xdebug.show_mem_delta = <%= node['xdebug']['show_mem_delta'] %>
+;xdebug.show_mem_delta = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.trace_enable_trigger
+;
+; Only in Xdebug versions > 2.2
 ;
 ; Type: boolean, Default value: 0
 ;
@@ -578,7 +666,7 @@ xdebug.show_mem_delta = <%= node['xdebug']['show_mem_delta'] %>
 ; set xdebug.auto_trace to 0.
 ; 
 ;
-xdebug.trace_enable_trigger = <%= node['xdebug']['trace_enable_trigger'] %>
+;xdebug.trace_enable_trigger = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.trace_format
@@ -600,23 +688,24 @@ xdebug.trace_enable_trigger = <%= node['xdebug']['trace_enable_trigger'] %>
 ; 1      writes a computer readable format which has two different records. There are
 ;        different records for entering a stack frame, and leaving a stack frame. The
 ;        table below lists the fields in each type of record. Fields are tab separated.
+; -----  ------------------------------------------------------------------------------
+; 2      writes a trace formatted in (simple) HTML.
 ; =====  ==============================================================================
 ; 
 ; Fields for the computerized format:
 ; 
-; ===========  =====  ==========  ==========  ==========  ============  =============  =========================================  ================================  ========  ===========
-; Record type  1      2           3           4           5             6              7                                          8                                 9         10
-; ===========  =====  ==========  ==========  ==========  ============  =============  =========================================  ================================  ========  ===========
-; Entry        level  function #  always '0'  time index  memory usage  function name  user-defined (1) or internal               name of the include/require file  filename  line number
-;                                                                                      function (0)                                                                           
-; -----------  -----  ----------  ----------  ----------  ------------  -------------  -----------------------------------------  --------------------------------  --------  -----------
-; Exit         level  function #  always '1'  time index  memory usage  empty                                                                                                 
-; ===========  =====  ==========  ==========  ==========  ============  =============  =========================================  ================================  ========  ===========
+; ===========  =====  ===========  ===========  ==========  ============  =============  ===========================================  ================================  ========  ===========
+; Record type  1      2            3            4           5             6              7                                            8                                 9         10
+; ===========  =====  ===========  ===========  ==========  ============  =============  ===========================================  ================================  ========  ===========
+; Entry        level  function #   always '0'   time index  memory usage  function name  user-defined (1) or internal function (0)    name of the include/require file  filename  line number
+; -----------  -----  -----------  -----------  ----------  ------------  -------------  -------------------------------------------  --------------------------------  --------  -----------
+; Exit         level  function #   always '1'   time index  memory usage  empty                                                                                                   
+; ===========  =====  ===========  ===========  ==========  ============  =============  ===========================================  ================================  ========  ===========
 ; 
 ; See the introduction of Function Traces for a few examples.
 ; 
 ;
-xdebug.trace_format = <%= node['xdebug']['trace_format'] %>
+;xdebug.trace_format = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.trace_options
@@ -627,7 +716,7 @@ xdebug.trace_format = <%= node['xdebug']['trace_format'] %>
 ; overwritten in subsequent requests.
 ; 
 ;
-xdebug.trace_options = <%= node['xdebug']['trace_options'] %>
+;xdebug.trace_options = 0
 
 ; -----------------------------------------------------------------------------
 ; xdebug.trace_output_dir
@@ -638,7 +727,7 @@ xdebug.trace_options = <%= node['xdebug']['trace_options'] %>
 ; user who the PHP will be running as has write permissions to that directory.
 ; 
 ;
-xdebug.trace_output_dir = <%= node['xdebug']['trace_output_dir'] %>
+;xdebug.trace_output_dir = /tmp
 
 ; -----------------------------------------------------------------------------
 ; xdebug.trace_output_name
@@ -687,7 +776,7 @@ xdebug.trace_output_dir = <%= node['xdebug']['trace_output_dir'] %>
 ; [1] http://httpd.apache.org/docs/2.2/en/mod/mod_unique_id.html
 ; 
 ;
-xdebug.trace_output_name = <%= node['xdebug']['trace_output_name'] %>
+;xdebug.trace_output_name = trace.%c
 
 ; -----------------------------------------------------------------------------
 ; xdebug.var_display_max_children
@@ -696,12 +785,15 @@ xdebug.trace_output_name = <%= node['xdebug']['trace_output_name'] %>
 ;
 ; Controls the amount of array children and object's properties are shown when
 ; variables are displayed with either xdebug_var_dump(), xdebug.show_local_vars
-; or through Function Traces. This setting does not have any influence on the
-; number of children that is send to the client through the Remote Debugging
-; feature.
+; or through Function Traces.
+; 
+; To disable any limitation, use *-1* as value.
+; 
+; This setting does not have any influence on the number of children that is
+; send to the client through the Remote Debugging feature.
 ; 
 ;
-xdebug.var_display_max_children = <%= node['xdebug']['var_display_max_children'] %>
+;xdebug.var_display_max_children = 128
 
 ; -----------------------------------------------------------------------------
 ; xdebug.var_display_max_data
@@ -710,11 +802,15 @@ xdebug.var_display_max_children = <%= node['xdebug']['var_display_max_children']
 ;
 ; Controls the maximum string length that is shown when variables are displayed
 ; with either xdebug_var_dump(), xdebug.show_local_vars or through Function
-; Traces. This setting does not have any influence on the amount of data that is
+; Traces.
+; 
+; To disable any limitation, use *-1* as value.
+; 
+; This setting does not have any influence on the number of children that is
 ; send to the client through the Remote Debugging feature.
 ; 
 ;
-xdebug.var_display_max_data = <%= node['xdebug']['var_display_max_data'] %>
+;xdebug.var_display_max_data = 512
 
 ; -----------------------------------------------------------------------------
 ; xdebug.var_display_max_depth
@@ -723,9 +819,17 @@ xdebug.var_display_max_data = <%= node['xdebug']['var_display_max_data'] %>
 ;
 ; Controls how many nested levels of array elements and object properties are
 ; when variables are displayed with either xdebug_var_dump(),
-; xdebug.show_local_vars or through Function Traces. This setting does not have
-; any influence on the depth of children that is send to the client through the
-; Remote Debugging feature.
+; xdebug.show_local_vars or through Function Traces.
+; 
+; The maximum value you can select is 1023. You can also use *-1* as value to
+; select this maximum number.
+; 
+; This setting does not have any influence on the number of children that is
+; send to the client through the Remote Debugging feature.
 ; 
 ;
-xdebug.var_display_max_depth = <%= node['xdebug']['var_display_max_depth'] %>
+;xdebug.var_display_max_depth = 3
+
+<% node['xdebug']['directives'].sort_by { |key, val| key }.each do |directive, value| -%>
+<%= "xdebug.#{directive} = #{value}" %>
+<% end -%>

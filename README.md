@@ -1,58 +1,76 @@
+[![Build Status](https://travis-ci.org/escapestudios-cookbooks/xdebug.png)](https://travis-ci.org/escapestudios-cookbooks/xdebug)
+
 Description
 ===========
 
-Words go here.
+This cookbook provides an easy way to install Xdebug.
 
-Currently tested only on 64-bit Ubuntu 10.04 (Lucid).
+More information?
+* http://xdebug.org/
 
 Requirements
 ============
 
-## Cookbooks:
+## Platforms:
+
+* Debian
+* Ubuntu
+* RHEL
+* CentOS
+* Fedora
+* Scientific
+* Amazon
+* Windows
+* SmartOS
 
 Attributes
 ==========
 
+## default.rb:
+
+* `node['xdebug']['version']` - The Xdebug version that will be installed, defaults to 'latest'
+* `node['xdebug']['config_file']` - defaults to nil
+* `node['xdebug']['web_server']['service_name']` - defaults to 'apache2'
+* `node['xdebug']['directives']` - hash of directives and values to append to `xdebug.ini`, defaults to {}
+
 Usage
 =====
 
-TODO
-====
+1. include `recipe[xdebug]` in a run list
+2. change the `node['xdebug']['config_file']` attribute to your xdebug.ini path (eg. '/etc/php5/conf.d/xdebug.ini'), double-check the value of `node['xdebug']['web_server']['service_name']` and set the values of the directives (eg. { "remote_autostart" => 1, "remote_connect_back" => 1, "remote_enable" => 1, "remote_log" => '/tmp/remote.log' }).
+--- OR ---
+override the attributes on a higher level (http://wiki.opscode.com/display/chef/Attributes#Attributes-AttributesPrecedence)
 
- * Placeholder
+References
+==========
 
-ISSUES
-======
+* [Xdebug home page] (http://xdebug.org/)
+* a very big thanks to David King <dking@xforty.com> for the original version of this cookbook
 
- * Placeholder
+License and Authors
+===================
 
-## Development
+Author: David Joos <david.joos@escapestudios.com>
+Author: Escape Studios Development <dev@escapestudios.com>
+Copyright: 2014, Escape Studios
 
- * Source hosted at [GitHub][repo]
- * Report issues/Questions/Feature requests on [GitHub Issues][issues]
+Unless otherwise noted, all files are released under the MIT license,
+possible exceptions will contain licensing information in them.
 
-Pull requests are very welcome! Make sure your patches are well tested.
-Ideally create a topic branch for every seperate change you make.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-LICENSE & AUTHOR:
-=================
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-Author::       | David King, xforty technologies (<dking@xforty.com>)
----------------|-----------------------------------------------------
-Contributors:: | https://github.com/xforty/chef-xdebug/contributors
-Copyright::    | 2012, xforty technologies
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-[repo]:   https://github.com/xforty/chef-xdebug
-[issues]: https://github.com/xforty/chef-xdebug/issues
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
