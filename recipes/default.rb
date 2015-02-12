@@ -20,6 +20,7 @@ end
 php_pear package do
   version node['xdebug']['version'] if node['xdebug']['version'] != 'latest'
   action action
+  options node['xdebug']['pear_options'] if !node['xdebug']['pear_options'].empty?
 end
 
 template node['xdebug']['config_file'] do
