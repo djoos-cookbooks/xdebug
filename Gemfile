@@ -19,5 +19,5 @@ end
 group :integration do
   gem 'test-kitchen', '~> 1.2'
   gem 'kitchen-vagrant', '~> 0.11'
-  gem 'serverspec', '~> 1.0'
+  gem 'serverspec', '~> 2.8.2'
 end
