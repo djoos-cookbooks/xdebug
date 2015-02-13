@@ -33,6 +33,10 @@ template node['xdebug']['config_file'] do
   end
 end
 
+execute '/usr/sbin/php5enmod xdebug' do
+  only_if { platform?('ubuntu') && node['platform_version'].to_f >= 12.04 && ::File.exist?('/usr/sbin/php5enmod') && node['xdebug']['execute_php5enmod'] }
+end
+
 directives = node['xdebug']['directives']
 
 unless directives.nil?
