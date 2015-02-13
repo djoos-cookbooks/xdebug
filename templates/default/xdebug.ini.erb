@@ -597,7 +597,9 @@ zend_extension = <%= %x[ php -i | grep extension_dir | awk 'NR==1 {print $(NF)}'
 ;
 ; The port to which Xdebug tries to connect on the remote host. Port 9000 is the
 ; default for both the client and the bundled debugclient. As many clients use
-; this port number, it is best to leave this setting unchanged.
+; this port number, it is best to leave this setting unchanged. However, if you
+; use FPM (FastCGI Process Manager)? It uses the same port by default as Xdebug
+; (9000) so you will need to change one of them to a different number.
 ; 
 ;
 ;xdebug.remote_port = 9000
