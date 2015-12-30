@@ -4,14 +4,7 @@ driver_config:
   require_chef_omnibus: true
 
 platforms:
-# - name: ubuntu-12.04
-# driver_config:
-# box: opscode-ubuntu-12.04
-# box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
-  - name: ubuntu-13.04
-    driver_config:
-      box: opscode-ubuntu-13.04
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-13.04_provisionerless.box
+  - name: ubuntu-14.04
 
 suites:
   - name: default
@@ -19,5 +12,8 @@ suites:
       - recipe[xdebug::default]
     attributes:
       xdebug:
+        stand_along: true
+        execute_php5enmod: true
+        config_file: '/etc/php5/mods-available/xdebug.ini'
         web_server:
           service_name: ''
