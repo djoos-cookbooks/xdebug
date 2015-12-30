@@ -5,13 +5,15 @@
 # Copyright 2014, Escape Studios
 #
 
+include_recipe 'apt'
 include_recipe 'build-essential'
+include_recipe 'php' if node['xdebug']['stand_along']
 
 # install/upgrade xdebug
 package = 'xdebug'
 
 # upgrade when package is installed and latest version is required
-if !(`pear list | grep #{package}`.empty?) && node['xdebug']['version'] == 'latest'
+if Mixlib::ShellOut.new("pecl list | grep -i #{package}").run_command.stdout.downcase.include?('xdebug') && node['xdebug']['version'] == 'latest'
   action = :upgrade
 else
   action = :install
@@ -22,6 +24,8 @@ php_pear package do
   action action
   options node['xdebug']['pear_options'] unless node['xdebug']['pear_options'].empty?
 end
+
+#service 'apache2' if defined?(ChefSpec) #declare service to prevent unit testing component
 
 template node['xdebug']['config_file'] do
   source 'xdebug.ini.erb'
